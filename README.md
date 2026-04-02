@@ -1,4 +1,4 @@
-# ⚽ Resenha Alert Bot — Python
+# ⚽ ResenhoBot — Python
 
 ### Instalar e rodar
 
