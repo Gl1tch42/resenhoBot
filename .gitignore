@@ -1,1 +1,3 @@
 .env
+__pycache__
+./task/__pycache__

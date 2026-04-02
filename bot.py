@@ -1,14 +1,10 @@
 import discord
 from discord.ext import commands, tasks
 import os
-import asyncio
-import aiohttp
 from dotenv import load_dotenv
-import requests
-from bs4 import BeautifulSoup
-import datetime
-import pytz
- 
+from tasks.task_update_data import atualizar_arquivo
+import json
+
 load_dotenv()
  
 # ============================================================
@@ -40,7 +36,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    printer.start()
+    tasks.start()
     print(f'Sucesso! Bot conectado como: {bot.user.name}')
 
 @bot.command()
@@ -58,99 +54,39 @@ async def ajuda(ctx):
     )
     await ctx.send(help_text)
 
-    """Busca jogos do Brasileirão dentro da janela permitida (Abril 2026)"""
-    url = "https://v3.football.api-sports.io/fixtures"
-    
-    # Pegando a data de hoje formatada exatamente como a API sugeriu
-    hoje = "2026-04-02" 
-    
-    params = {
-        "league": "71",   # Brasileirão Série A
-        "season": "2026", # Agora vamos usar 2026!
-        "date": hoje
-    }
-    
-    headers = {
-        'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': FOOTBALL_API_KEY
-    }
-
-    await ctx.send(f"⚽ Buscando jogos de hoje ({hoje}) no Brasileirão 2026...")
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url, headers=headers, params=params) as resp:
-            data = await resp.json()
-            
-            # Verificação de erro de permissão caso a API mude de ideia
-            if data.get("errors"):
-                erro_msg = data["errors"]
-                return await ctx.send(f"⚠️ Erro da API: {erro_msg}")
-
-            fixtures = data.get('response', [])
-
-            if not fixtures:
-                return await ctx.send(f"📅 Não encontrei jogos para o dia {hoje}. Tente `!jogos_amanha`.")
-
-            embed = discord.Embed(
-                title=f"🏟️ Rodada - {hoje}",
-                description="Brasileirão Série A 2026",
-                color=discord.Color.green()
-            )
-
-            for game in fixtures:
-                home = game['teams']['home']['name']
-                away = game['teams']['away']['name']
-                
-                # Placar (pode ser None se o jogo não começou)
-                gol_h = game['goals']['home'] if game['goals']['home'] is not None else "-"
-                gol_a = game['goals']['away'] if game['goals']['away'] is not None else "-"
-                
-                status = game['fixture']['status']['short'] # Ex: FT (Finalizado), NS (Não começou)
-                
-                # Lógica de Rivais
-                emoji_zoeira = ""
-                if home in RIVAL_TEAMS and isinstance(gol_h, int) and gol_h < gol_a:
-                    emoji_zoeira = " 😂"
-                elif away in RIVAL_TEAMS and isinstance(gol_a, int) and gol_a < gol_h:
-                    emoji_zoeira = " 😂"
-
-                embed.add_field(
-                    name=f"{home} {gol_h} x {gol_a} {away}",
-                    value=f"Status: {status}{emoji_zoeira}",
-                    inline=False
-                )
-
-            await ctx.send(embed=embed)
 
 @tasks.loop(seconds=120)
-async def printer():
+async def tasks():
+    atualizar_arquivo()
     print("Estou funcionando!")
 
-    """Formata uma linha de jogo com status, placar e horário."""
-    home = f["teams"]["home"]["name"]
-    away = f["teams"]["away"]["name"]
-    status_short = f["fixture"]["status"]["short"]
-    elapsed = f["fixture"]["status"].get("elapsed")
-    home_g = f["goals"]["home"]
-    away_g = f["goals"]["away"]
- 
-    # Jogo ao vivo
-    if status_short in ("1H", "2H", "HT", "ET", "P"):
-        min_str = f"{elapsed}'" if elapsed else "?"
-        return f"🟢 **{home} {home_g} x {away_g} {away}** — {min_str}"
- 
-    # Encerrado
-    if status_short == "FT":
-        return f"⬛ ~~{home}~~ {home_g} x {away_g} {away} *(encerrado)*"
- 
-    # Agendado — mostra horário local (UTC-3)
-    import datetime
-    ts = f["fixture"].get("timestamp")
-    if ts:
-        dt = datetime.datetime.utcfromtimestamp(ts) - datetime.timedelta(hours=3)
-        hora = dt.strftime("%d/%m %H:%M")
-    else:
-        hora = "?"
-    return f"🔵 {home} x {away} — {hora}"
+@bot.command()
+async def jogos(ctx):
+    await ctx.send("⏳ Buscando jogos da rodada... aguarde.")
+    
+    with open('data\dados_jogos.json', 'r', encoding='utf-8') as f:
+      jogos = json.load(f)
+    
+    if not jogos:
+        return await ctx.send("Não consegui encontrar jogos no momento.")
+
+    mensagem = "**BR Brasileirão — Regular Season**\n\n"
+    
+    for j in jogos:
+        # Lógica de ícones baseada no status
+        if "Encerrado" in j['status'] or "Ontem" in j['status']:
+            emoji = "⬛"
+            linha = f"{emoji} {j['mandante']} {j['placar']} {j['visitante']} ({j['status']})"
+        elif "’" in j['status'] or "Intervalo" in j['status']: # Se tem o símbolo de minutos 67'
+            emoji = "🟢"
+            linha = f"{emoji} {j['mandante']} {j['placar']} {j['visitante']} ({j['status']}) ⬅️ *ao vivo*"
+        else: # Jogos futuros
+            emoji = "🔵"
+            linha = f"{emoji} {j['mandante']} {j['placar']} {j['visitante']} ({j['status']})"
+            
+        mensagem += linha + "\n\n"
+
+    await ctx.send(mensagem)
+
 # Substitua pelo Token que você pegou no Developer Portal
 bot.run(DISCORD_TOKEN)
