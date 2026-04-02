@@ -1,29 +1,6 @@
 # ⚽ Resenha Alert Bot — Python
 
-Bot para Discord que monitora jogos ao vivo e avisa quando seus **times rivais** estão sofrendo.
-
----
-
-## Como funciona
-
-| Situação | Alerta enviado |
-|---|---|
-| Rival começa perdendo ou empata | 🚨 `@everyone Possível resenha no {Liga}!` |
-| Rival estava sofrendo e virou | ✅ `@everyone Resenha cancelada` |
-
-O bot verifica os placares a cada **60 segundos** usando a API-Football.
-
----
-
-## Pré-requisitos
-
-- Python 3.10 ou superior
-- Conta gratuita em [api-football.com](https://api-football.com) (100 req/dia grátis)
-- Bot criado no [Discord Developer Portal](https://discord.com/developers/applications)
-
----
-
-## Instalação
+### Instalar e rodar
 
 ```bash
 # 1. Entre na pasta do projeto
@@ -33,6 +10,9 @@ cd resenhoBot
 python -m venv venv
 source venv/bin/activate        # Linux/Mac
 venv\Scripts\activate           # Windows
+
+# execução padrao sem ambiente virtual
+python bot.py
 
 # 3. Instale as dependências
 pip install -r requirements.txt
