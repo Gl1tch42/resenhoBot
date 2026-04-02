@@ -1,78 +1,81 @@
+Aqui está o conteúdo formatado em **Markdown** puro para você copiar e colar no seu arquivo `README.md`:
+
+````markdown
 # ⚽ ResenhoBot — Python
 
-### Instalar e rodar
+### Install and Run
 
 ```bash
-# 1. Entre na pasta do projeto
+# 1. Enter the project folder
 cd resenhoBot
 
-# 2. Crie um ambiente virtual (recomendado)
+# 2. Create a virtual environment (recommended)
 python -m venv venv
-source venv/bin/activate        # Linux/Mac
-venv\Scripts\activate           # Windows
+source venv/bin/activate         # Linux/Mac
+venv\Scripts\activate            # Windows
 
-# execução padrao sem ambiente virtual
+# Standard execution without virtual environment
 python bot.py
 
-# 3. Instale as dependências
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Configure as variáveis de ambiente
+# 4. Set up environment variables
 cp .env.example .env
-# Edite o .env com seus dados
-```
+# Edit .env with your credentials
+````
 
----
+-----
 
-## Configuração passo a passo
+## Step-by-Step Configuration
 
-### 1. Criar o bot no Discord
+### 1\. Create the Discord Bot
 
-1. Acesse [discord.com/developers/applications](https://discord.com/developers/applications)
-2. Clique em **New Application** → dê um nome (ex: `Resenha Alert`)
-3. Vá em **Bot** → clique em **Add Bot**
-4. Em **Privileged Gateway Intents**, ative:
-   - `Server Members Intent`
-   - `Message Content Intent`
-5. Clique em **Reset Token** e copie → este é o `DISCORD_TOKEN`
-6. Vá em **OAuth2 → URL Generator**:
-   - Scopes: `bot`
-   - Permissões: `Send Messages`, `Embed Links`, `Mention Everyone`
-7. Acesse a URL gerada no navegador para adicionar o bot ao servidor
+1.  Go to [discord.com/developers/applications](https://discord.com/developers/applications)
+2.  Click **New Application** → give it a name (e.g., `Resenha Alert`)
+3.  Go to **Bot** → click **Add Bot**
+4.  Under **Privileged Gateway Intents**, enable:
+      - `Server Members Intent`
+      - `Message Content Intent`
+5.  Click **Reset Token** and copy it → this is your `DISCORD_TOKEN`
+6.  Go to **OAuth2 → URL Generator**:
+      - Scopes: `bot`
+      - Permissions: `Send Messages`, `Embed Links`, `Mention Everyone`
+7.  Access the generated URL in your browser to add the bot to your server
 
-### 2. Obter a chave da API de futebol
+### 2\. Get the Football API Key
 
-1. Crie conta em [dashboard.api-football.com](https://dashboard.api-football.com/register)
-2. Copie sua **API Key** → este é o `FOOTBALL_API_KEY`
+1.  Create an account at [dashboard.api-football.com](https://dashboard.api-football.com/register)
+2.  Copy your **API Key** → this is your `FOOTBALL_API_KEY`
 
-### 3. Pegar o ID do canal
+### 3\. Get the Channel ID
 
-1. No Discord: **Configurações → Avançado → ativar Modo Desenvolvedor**
-2. Clique com botão direito no canal de alertas → **Copiar ID**
-3. Este é o `ALERT_CHANNEL_ID`
+1.  In Discord: **Settings → Advanced → enable Developer Mode**
+2.  Right-click the alerts channel → **Copy ID**
+3.  This is your `ALERT_CHANNEL_ID`
 
-### 4. Configurar os times rivais
+### 4\. Configure Rival Teams
 
-Abra o `bot.py` e edite a lista `RIVAL_TEAMS`:
+Open `bot.py` and edit the `RIVAL_TEAMS` list:
 
 ```python
 RIVAL_TEAMS = [
     "Vasco",
     "Palmeiras",
     "São Paulo",
-    # Adicione os times que você não gosta
+    # Add the teams you dislike here
 ]
 ```
 
-> Os nomes devem ser parecidos com os que aparecem na API. A busca é por correspondência parcial, então `"Flamengo"` vai casar com `"Flamengo RJ"` ou `"CR Flamengo"`.
+> Names should be similar to those appearing in the API. The search uses partial matching, so `"Flamengo"` will match `"Flamengo RJ"` or `"CR Flamengo"`.
 
-### 5. Configurar as ligas monitoradas (opcional)
+### 5\. Configure Monitored Leagues (optional)
 
 ```python
-LEAGUE_IDS = [71, 72, 73]  # Brasileirão A, B e Copa do Brasil
+LEAGUE_IDS = [71, 72, 73]  # Brasileirão A, B, and Copa do Brasil
 ```
 
-| Liga | ID |
+| League | ID |
 |------|-----|
 | Brasileirão Série A | 71 |
 | Brasileirão Série B | 72 |
@@ -84,87 +87,84 @@ LEAGUE_IDS = [71, 72, 73]  # Brasileirão A, B e Copa do Brasil
 | Premier League | 39 |
 | La Liga | 140 |
 
----
+-----
 
-## Rodando o bot
+## Running the Bot
 
 ```bash
 python bot.py
 ```
 
-Você deve ver no terminal:
+You should see the following in the terminal:
 
 ```
 ✅ Bot online: ResenhoBot#1234
-⚽ Monitorando rivais: Flamengo, Palmeiras
-⏱️  Verificando a cada 60s
+⚽ Monitoring rivals: Flamengo, Palmeiras
+⏱️ Checking every 60s
 ```
 
----
+-----
 
-## Lógica de alertas
+## Alert Logic
 
 ```
-Rival estava GANHANDO → passa a PERDER ou EMPATAR
-    → 🚨 "Possível resenha no [Liga]!"
+Rival was WINNING → switches to LOSING or DRAWING
+    → 🚨 "Possible banter in [League]!"
 
-Rival estava PERDENDO/EMPATANDO → passa a GANHAR
-    → ✅ "Resenha cancelada"
+Rival was LOSING/DRAWING → switches to WINNING
+    → ✅ "Banter canceled"
 ```
 
-O bot guarda o estado de cada jogo em memória. Se o bot reiniciar durante um jogo, ele começa a monitorar do zero (sem histórico de alertas anteriores).
+The bot keeps the state of each match in memory. If the bot restarts during a game, it starts monitoring from scratch (without previous alert history).
 
+-----
 
+## 🛠️ Project Structure
 
-## 🛠️ Estrutura do Projeto
+  * `bot.py`: Bot entry point, contains commands and Discord logic.
+  * `tasks/task_update_data.py`: Manages writing to the local JSON file.
+  * `tasks/obter_jogos_brasileirao.py`: Selenium script that performs scraping on the GE website.
+  * `data/dados_jogos.json`: Stores the current state of the round's matches.
 
-* `bot.py`: Ponto de entrada do bot, contém os comandos e a lógica do Discord.
-* `tasks/task_update_data.py`: Gerencia a escrita do arquivo JSON local.
-* `tasks/obter_jogos_brasileirao.py`: Script de Selenium que realiza o scraping no site do GE.
-* `data/dados_jogos.json`: Armazena o estado atual dos jogos da rodada.
+## 🚀 Features
 
-## 🚀 Funcionalidades
+  * **Real-Time Scraping:** Extracts match data (score, teams, and status) directly from GE.
+  * **Automatic Update:** Features a background task that updates the database every 2 minutes.
+  * **Match Command:** The `!jogos` command displays the full round list with visual indicators:
+      * 🟢 **Live**
+      * ⬛ **Finished**
+      * 🔵 **Upcoming matches**
+  * **Rival Filter:** Internal configuration to monitor specific teams the user wants to "keep a close eye on."
 
-* **Scraping em Tempo Real:** Extrai dados de jogos (placar, times e status) diretamente do GE.
-* **Atualização Automática:** Possui uma tarefa em segundo plano que atualiza a base de dados a cada 2 minutos.
-* **Comando de Jogos:** O comando `!jogos` exibe a lista completa da rodada com indicadores visuais:
-    * 🟢 **Ao vivo**
-    * ⬛ **Encerrado**
-    * 🔵 **Próximos jogos**
-* **Filtro de Rivais:** Configuração interna para monitorar times específicos que o usuário deseja "acompanhar de perto".
+-----
 
+## Project Contributors
 
-## Contribuites do projeto
+\<table style="width:100%"\>
+\<tr\>
+\<td align="center"\>
+\<a href="https://github.com/Gl1tch42"\>
+\<img src="https://github.com/Gl1tch42.png" width="100px;" alt="Jean Michel"/\>\<br /\>
+\<sub\>\<b\>Jean Michel\</b\>\</sub\>
+\</a\>\<br /\>
+🚀 Lead Developer
+\</td\>
+\</tr\>
+\</table\>
 
-<table style="width:100%">
-  <tr>
-    <td align="center">
-      <a href="https://github.com/Gl1tch42">
-        <img src="https://github.com/Gl1tch42.png" width="100px;" alt="Jean Michel"/><br />
-        <sub><b>Jean Michel</b></sub>
-      </a><br />
-      🚀 Lead Developer
-    </td>
-    <!-- <td align="center">
-      <a href="https://github.com/usuario-parceiro">
-        <img src="https://github.com/usuario-parceiro.png" width="100px;" alt="Nome do Parceiro"/><br />
-        <sub><b>Nome do Parceiro</b></sub>
-      </a><br />
-      🎨 UI/UX & Regras de Negócio
-    </td> -->
-  </tr>
-</table>
+-----
 
----
+### 💡 How to Contribute
 
-### 💡 Como contribuir
+Feel free to suggest improvements or report bugs\! To contribute:
 
-Sinta-se à vontade para sugerir melhorias ou reportar bugs! Para contribuir:
+1.  **Fork** the project.
+2.  Create a **Branch** for your modification (`git checkout -b feature/new-feature`).
+3.  **Commit** your changes (`git commit -m 'Adding new alert function'`).
+4.  **Push** your branch (`git push origin feature/new-feature`).
+5.  Open a **Pull Request**.
 
-1.  Faça um **Fork** do projeto.
-2.  Crie uma **Branch** para sua modificação (`git checkout -b feature/nova-funcionalidade`).
-3.  Faça o **Commit** das suas alterações (`git commit -m 'Adicionando nova função de alerta'`).
-4.  Faça o **Push** da sua branch (`git push origin feature/nova-funcionalidade`).
-5.  Abra um **Pull Request**.
+> **Note:** If you are developing this bot together for your personal server, feel free to customize the contribution roles based on each person's participation\!
 
-> **Nota:** Se você estiver desenvolvendo este bot em conjunto para o seu servidor pessoal, sinta-se à vontade para personalizar os cargos de contribuição conforme a participação de cada um!
+```
+```
