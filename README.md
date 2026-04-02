@@ -137,12 +137,22 @@ O plano free tem **100 requisições/dia**. Com verificação a cada 60s rodando
 
 ---
 
-## Estrutura do projeto
+## 🛠️ Estrutura do Projeto
 
-```
-resenha-bot-py/
-├── bot.py            # Código principal
-├── requirements.txt  # Dependências Python
-├── .env.example      # Modelo de configuração
-└── README.md         # Este arquivo
-```
+* `bot.py`: Ponto de entrada do bot, contém os comandos e a lógica do Discord.
+* `tasks/task_update_data.py`: Gerencia a escrita do arquivo JSON local.
+* `tasks/obter_jogos_brasileirao.py`: Script de Selenium que realiza o scraping no site do GE.
+* `data/dados_jogos.json`: Armazena o estado atual dos jogos da rodada.
+
+## 🚀 Funcionalidades
+
+* **Scraping em Tempo Real:** Extrai dados de jogos (placar, times e status) diretamente do GE.
+* **Atualização Automática:** Possui uma tarefa em segundo plano que atualiza a base de dados a cada 2 minutos.
+* **Comando de Jogos:** O comando `!jogos` exibe a lista completa da rodada com indicadores visuais:
+    * 🟢 **Ao vivo**
+    * ⬛ **Encerrado**
+    * 🔵 **Próximos jogos**
+* **Filtro de Rivais:** Configuração interna para monitorar times específicos que o usuário deseja "acompanhar de perto".
+
+
+## Contribuites do projeto
