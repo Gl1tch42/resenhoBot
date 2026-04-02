@@ -1,6 +1,6 @@
 # ⚽ ResenhoBot
 
-### 4. Instalar e rodar
+### Instalar e rodar
 
 ```bash
 # Clonar ou baixar os arquivos
