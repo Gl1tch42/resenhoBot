@@ -68,10 +68,10 @@ async def jogos(ctx):
     
     for j in jogos:
         # Lógica de ícones baseada no status
-        if "Encerrado" in j['status'] or "Ontem" in j['status']:
+        if "ENCERRADO" in j['tipo_status'] or "CANCELADO" in j['tipo_status'] or "ADIADO" in j['tipo_status']:
             emoji = "⬛"
             linha = f"{emoji} {j['mandante']} {j['placar']} {j['visitante']} ({j['status']})"
-        elif "’" in j['status'] or "Intervalo" in j['status']: # Se tem o símbolo de minutos 67'
+        elif "AO_VIVO" in j['tipo_status']: # Se tem o símbolo de minutos 67'
             emoji = "🟢"
             linha = f"{emoji} {j['mandante']} {j['placar']} {j['visitante']} ({j['status']}) ⬅️ *ao vivo*"
         else: # Jogos futuros

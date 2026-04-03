@@ -3,60 +3,70 @@
         "mandante": "Botafogo",
         "visitante": "Mirassol",
         "placar": "3 x 2",
-        "status": "Nilton Santos (Engenhão) — 01/04 — Ontem — 19:30"
+        "status": "Nilton Santos (Engenhão) — 01/04 — Ontem — 19:30",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Internacional",
         "visitante": "São Paulo",
         "placar": "1 x 1",
-        "status": "Beira-Rio — 01/04 — Ontem — 19:30"
+        "status": "Beira-Rio — 01/04 — Ontem — 19:30",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Cruzeiro",
         "visitante": "Vitória",
         "placar": "3 x 0",
-        "status": "Mineirão — 01/04 — Ontem — 20:00"
+        "status": "Mineirão — 01/04 — Ontem — 20:00",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Bahia",
         "visitante": "Athletico-PR",
         "placar": "3 x 0",
-        "status": "Casa de Apostas Arena Fonte Nova — 01/04 — Ontem — 20:00"
+        "status": "Casa de Apostas Arena Fonte Nova — 01/04 — Ontem — 20:00",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Coritiba",
         "visitante": "Vasco",
         "placar": "1 x 1",
-        "status": "Couto Pereira — 01/04 — Ontem — 20:30"
+        "status": "Couto Pereira — 01/04 — Ontem — 20:30",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Fluminense",
         "visitante": "Corinthians",
         "placar": "3 x 1",
-        "status": "Maracanã — 01/04 — Ontem — 21:30"
+        "status": "Maracanã — 01/04 — Ontem — 21:30",
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Santos",
         "visitante": "Remo",
-        "placar": "1 x 0",
-        "status": "Vila Belmiro — Hoje — 19:00"
+        "placar": "2 x 4",
+        "status": "Vila Belmiro — Hoje — 19:00",
+        "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Chapecoense",
         "visitante": "Atlético-MG",
         "placar": "0 x 3",
-        "status": "Arena Condá — Hoje — 19:00"
+        "status": "Arena Condá — Hoje — 19:00",
+        "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Palmeiras",
         "visitante": "Grêmio",
         "placar": "x",
-        "status": "Arena Barueri — Hoje — 21:30"
+        "status": "Arena Barueri — Hoje — 21:30",
+        "tipo_status": "FUTURO"
     },
     {
         "mandante": "Bragantino",
         "visitante": "Flamengo",
         "placar": "x",
-        "status": "Cícero de Souza Marques — Hoje — 21:30"
+        "status": "Cícero de Souza Marques — Hoje — 21:30",
+        "tipo_status": "FUTURO"
     }
 ]
