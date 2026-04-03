@@ -44,29 +44,29 @@
     {
         "mandante": "Santos",
         "visitante": "Remo",
-        "placar": "2 x 4",
+        "placar": "2 x 0",
         "status": "Vila Belmiro — Hoje — 19:00",
-        "tipo_status": "AO_VIVO"
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Chapecoense",
         "visitante": "Atlético-MG",
-        "placar": "0 x 3",
+        "placar": "0 x 4",
         "status": "Arena Condá — Hoje — 19:00",
-        "tipo_status": "AO_VIVO"
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Palmeiras",
         "visitante": "Grêmio",
-        "placar": "x",
+        "placar": "1 x 0",
         "status": "Arena Barueri — Hoje — 21:30",
-        "tipo_status": "FUTURO"
+        "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Bragantino",
         "visitante": "Flamengo",
-        "placar": "x",
+        "placar": "2 x 0",
         "status": "Cícero de Souza Marques — Hoje — 21:30",
-        "tipo_status": "FUTURO"
+        "tipo_status": "AO_VIVO"
     }
 ]

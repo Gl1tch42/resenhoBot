@@ -196,7 +196,7 @@ async def verificar_resenha(bot: discord.ext.commands.Bot, alert_channel_id: int
             if sit_atual == "losing":
                 descricao = f"😂 **{rival}** já está **PERDENDO** para **{opponent}**!"
             else:
-                descricao = f"😬 **{rival}** começa **EMPATADO** com **{opponent}**."
+                descricao = f"😬 **{rival}** começa **EMPATANDO** com **{opponent}**."
 
             embed = discord.Embed(
                 title="🚨 POSSÍVEL RESENHA! 🚨",
