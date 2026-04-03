@@ -3,3 +3,4 @@ aiohttp==3.9.3
 python-dotenv==1.0.1
 selenium
 webdriver-manager
+pytz

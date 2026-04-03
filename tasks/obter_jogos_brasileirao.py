@@ -3,8 +3,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from datetime import datetime, timedelta
-import pytz # Instale com: pip install pytz
+from datetime import datetime, time, timedelta
+import pytz
 
 def obter_jogos_brasileirao():
     chrome_options = Options()
@@ -25,7 +25,8 @@ def obter_jogos_brasileirao():
 
     try:
         driver.get(url)
-        driver.implicitly_wait(10) # Espera até 10s para os elementos aparecerem
+        driver.refresh()
+        driver.implicitly_wait(20) # Espera até 20s para os elementos aparecerem
 
         jogos = driver.find_elements(By.CLASS_NAME, 'lista-jogos__jogo')
 

@@ -58,14 +58,14 @@
     {
         "mandante": "Palmeiras",
         "visitante": "Grêmio",
-        "placar": "1 x 0",
+        "placar": "1 x 1",
         "status": "Arena Barueri — Hoje — 21:30",
         "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Bragantino",
         "visitante": "Flamengo",
-        "placar": "2 x 0",
+        "placar": "3 x 0",
         "status": "Cícero de Souza Marques — Hoje — 21:30",
         "tipo_status": "AO_VIVO"
     }

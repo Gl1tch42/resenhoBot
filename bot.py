@@ -22,6 +22,8 @@ RIVAL_TEAMS = [
     "vasco da gama",
     "Santos",
     "Atlético-MG",
+    "Fluminense",
+    "Flamengo",
     # Adicione mais aqui
 ]
  
