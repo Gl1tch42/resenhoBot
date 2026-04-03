@@ -113,6 +113,20 @@ The bot keeps the state of each match in memory. If the bot restarts during a ga
         </a><br>
         🚀 Lead Developer
         </td>
+        <td align="center">
+        <a href="https://github.com/Sirbola8">
+            <img src="https://github.com/Sirbola8.png" width="100px;" alt="Jão Gabriel"><br>
+            <sub><b>Jão Gabriel</b></sub>
+        </a><br>
+        🚀 Developer
+        </td>
+        <td align="center">
+        <a href="https://github.com/Kaio-Msr">
+            <img src="https://github.com/Kaio-Msr.png" width="100px;" alt="Kaio msr"><br>
+            <sub><b>Kaio msr</b></sub>
+        </a><br>
+        🚀 Developer
+        </td>
     </tr>
 </table>
 
