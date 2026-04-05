@@ -1,0 +1,15 @@
+app = "resenhobot-ge3v4g"
+primary_region = "mad"
+
+[build]
+
+[env]
+  PYTHONUNBUFFERED = "1"
+
+[processes]
+  app = "python bot.py"
+
+[[vm]]
+  memory = "1024mb"
+  cpu_kind = "shared"
+  cpus = 1

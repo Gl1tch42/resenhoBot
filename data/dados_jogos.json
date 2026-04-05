@@ -23,23 +23,23 @@
     {
         "mandante": "Chapecoense",
         "visitante": "Vitória",
-        "placar": "0 x 0",
+        "placar": "1 x 1",
         "status": "Arena Condá — Hoje — 16:00",
-        "tipo_status": "AO_VIVO"
+        "tipo_status": "ENCERRADO"
     },
     {
         "mandante": "Flamengo",
         "visitante": "Santos",
-        "placar": "x",
+        "placar": "0 x 0",
         "status": "Maracanã — Hoje — 17:30",
-        "tipo_status": "FUTURO"
+        "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Atlético-MG",
         "visitante": "Athletico-PR",
-        "placar": "x",
+        "placar": "1 x 0",
         "status": "Arena MRV — Hoje — 17:30",
-        "tipo_status": "FUTURO"
+        "tipo_status": "AO_VIVO"
     },
     {
         "mandante": "Corinthians",
