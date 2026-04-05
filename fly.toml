@@ -1,4 +1,4 @@
-app = 'app-black-field-3188'
+app = 'resenhobot'
 primary_region = 'iad'
 
 [build]
@@ -21,7 +21,7 @@ primary_region = 'iad'
   cpus = 1
   memory_mb = 256
 =======
-app = "resenhobot-ge3v4g"
+app = "resenhobot"
 primary_region = "mad"
 
 [build]
